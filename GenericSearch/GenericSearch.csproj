@@ -61,6 +61,8 @@
     <Compile Include="Expressions\ICreateSearchClause.cs" />
     <Compile Include="Expressions\SearchClausePreperer.cs" />
     <Compile Include="Expressions\SearchClauseStrategy.cs" />
+    <Compile Include="Helpers\IConvertTypeToPrecise.cs" />
+    <Compile Include="Helpers\PreciseTypeConverter.cs" />
     <Compile Include="ISearchableEntity.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
