@@ -33,8 +33,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc">
+      <HintPath>..\packages\Castle.Core.4.2.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject, Version=3.3.3.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
       <HintPath>..\packages\Ninject.3.3.3\lib\net45\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Conventions, Version=3.3.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.3.0\lib\net45\Ninject.Extensions.Conventions.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Extensions.Factory, Version=3.3.2.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7">
+      <HintPath>..\packages\Ninject.Extensions.Factory.3.3.2\lib\net45\Ninject.Extensions.Factory.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -45,9 +54,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependencies\CoreModule.cs" />
-    <Compile Include="Expressions\ExpressionStrategyHandlers\NormalExpressionHandler.cs" />
+    <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByContains.cs" />
+    <Compile Include="Expressions\ExpressionStrategyHandlers\IPrepareExpressionBaseOnStrategy.cs" />
+    <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerNormal.cs" />
     <Compile Include="Expressions\ICreateSearchClause.cs" />
-    <Compile Include="Expressions\IPrepareExpressionBaseOnStrategy.cs" />
     <Compile Include="Expressions\SearchClausePreperer.cs" />
     <Compile Include="Expressions\SearchClauseStrategy.cs" />
     <Compile Include="ISearchableEntity.cs" />
