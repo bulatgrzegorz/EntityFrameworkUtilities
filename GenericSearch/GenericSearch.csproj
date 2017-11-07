@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Dependencies\CoreModule.cs" />
+    <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByCombineOrCondition.cs" />
     <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByContains.cs" />
     <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByRange.cs" />
     <Compile Include="Expressions\ExpressionStrategyHandlers\IPrepareExpressionBaseOnStrategy.cs" />

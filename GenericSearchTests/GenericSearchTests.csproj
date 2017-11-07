@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByCombineOrConditionTests.cs" />
     <Compile Include="Expressions\ExpressionStrategyHandlers\ExpressionHandlerByContainsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
