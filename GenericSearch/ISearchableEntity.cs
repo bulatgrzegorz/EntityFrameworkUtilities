@@ -1,4 +1,5 @@
 ﻿using System;
+using GenericSearch.Expressions;
 
 namespace GenericSearch
 {
@@ -10,7 +11,7 @@ namespace GenericSearch
         
         object AdditionalValue { get; set; }
         
-        bool IsSearchByContains { get; set; }
+        SearchClauseStrategy SearchStrategy { get; set; }
         
         Type ValueType { get; set; } 
     }

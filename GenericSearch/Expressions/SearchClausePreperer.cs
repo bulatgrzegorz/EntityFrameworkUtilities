@@ -18,13 +18,16 @@ namespace GenericSearch.Expressions
 
         public Expression<Func<T, bool>> CreateSearchClause<T>(ISearchableEntity entity)
         {
-            var expressionParameter = Expression.Parameter(typeof(T));
-            
-            return Expression.Lambda<Func<T, bool>>(
-                Expression.Equal(
-                    left: Expression.Property(expression: expressionParameter, propertyName: entity.ColumnNameToSearchBy),
-                    right: Expression.Constant(value: entity.ValueToSearch, type: entity.ValueType)),
-                expressionParameter);
+            var searchHandler =
+                _expressionPreparersBaseOnStrategy.SingleOrDefault(x => x.SearchStrategy == entity.SearchStrategy);
+            if (searchHandler == null)
+            {
+                throw new InvalidOperationException(
+                    string.Format("Search by {0} strategy is not actualy supported", entity.SearchStrategy));
+            }
+
+            return searchHandler.CreateExpression<T>(entity, Expression.Parameter(typeof(T)));
+
         }
     }
 }
