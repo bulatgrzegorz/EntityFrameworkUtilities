@@ -7,7 +7,7 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
     {
         public SearchClauseStrategy SearchStrategy { get; set; }
         
-        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter)
+        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter, MemberExpression memberExpression)
         {
             if (entity.AdditionalValue == null || entity.ValueToSearch == null)
             {
@@ -18,15 +18,13 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
             {
                 throw new ArgumentException("Search by range with parameters of different type is not supported");
             }
-
-            var expressionMember = Expression.Property(expressionParameter, entity.ColumnNameToSearchBy);
-            
+    
             var firstExpression = Expression.GreaterThanOrEqual(
-                expressionMember,
+                memberExpression,
                 Expression.Constant(entity.ValueToSearch, entity.ValueType));
 
             var secondExpression = Expression.LessThanOrEqual(
-                expressionMember,
+                memberExpression,
                 Expression.Constant(entity.AdditionalValue, entity.ValueType));
 
             return Expression.Lambda<Func<T, bool>>(

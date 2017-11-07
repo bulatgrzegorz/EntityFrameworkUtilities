@@ -23,7 +23,7 @@ namespace GenericSearchTests.Expressions.ExpressionStrategyHandlers
             var testEntity = new TestEntity() {ValueType = typeof(int)};
 
             Assert.Throws<ArgumentException>(
-                () => _expressionHandlerByContains.CreateExpression<int>(testEntity, null));
+                () => _expressionHandlerByContains.CreateExpression<int>(testEntity, null, null));
         }
         
         private class TestEntity : ISearchableEntity

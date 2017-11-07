@@ -7,6 +7,9 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
     {
         SearchClauseStrategy SearchStrategy { get; set; }
 
-        Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression parameterExpression);
+        Expression<Func<T, bool>> CreateExpression<T>(
+            ISearchableEntity entity, 
+            ParameterExpression parameterExpression,
+            MemberExpression memberExpression);
     }
 }

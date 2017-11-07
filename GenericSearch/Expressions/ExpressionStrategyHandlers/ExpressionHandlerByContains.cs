@@ -7,7 +7,7 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
     {
         public SearchClauseStrategy SearchStrategy { get; set; }
         
-        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter)
+        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter, MemberExpression memberExpression)
         {
             if (entity.ValueType != typeof(string))
             {
@@ -18,9 +18,8 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
             }
             
             var containsMethodInfo = typeof(string).GetMethod(name: "Contains", types: new[] {typeof(string)});
-            var expressionMember = Expression.Property(expression: expressionParameter, propertyName: entity.ColumnNameToSearchBy);
             var constant = Expression.Constant(value: entity.ValueToSearch, type: entity.ValueType);
-            var expressionMethodCall = Expression.Call(expressionMember, containsMethodInfo, constant);
+            var expressionMethodCall = Expression.Call(memberExpression, containsMethodInfo, constant);
 
             return Expression.Lambda<Func<T, bool>>(
                 expressionMethodCall, expressionParameter);

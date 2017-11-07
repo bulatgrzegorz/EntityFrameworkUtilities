@@ -7,11 +7,11 @@ namespace GenericSearch.Expressions.ExpressionStrategyHandlers
     {
         public SearchClauseStrategy SearchStrategy { get; set; }
 
-        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter)
+        public Expression<Func<T, bool>> CreateExpression<T>(ISearchableEntity entity, ParameterExpression expressionParameter, MemberExpression memberExpression)
         {
             return Expression.Lambda<Func<T, bool>>(
                 Expression.Equal(
-                    left: Expression.Property(expression: expressionParameter, propertyName: entity.ColumnNameToSearchBy),
+                    left: memberExpression,
                     right: Expression.Constant(value: entity.ValueToSearch, type: entity.ValueType)),
                 expressionParameter);
         }

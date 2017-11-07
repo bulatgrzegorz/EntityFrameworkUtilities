@@ -7,7 +7,7 @@ namespace GenericSearch.Helpers
 {
     public class PreciseTypeConverter : IConvertTypeToPrecise
     {
-        public IDictionary<Type, Action<Type, object>> PreciseTypeConfiguration { get; set; }
+        public IDictionary<Type, Func<object, object>> PreciseTypeConfiguration { get; set; }
         
         public T GetPreciseTypeValue<T>(object valueToConvert)
         {
@@ -20,17 +20,17 @@ namespace GenericSearch.Helpers
 
         public PreciseTypeConverter()
         {
-            PreciseTypeConfiguration = new Dictionary<Type, Action<Type, object>>()
+            PreciseTypeConfiguration = new Dictionary<Type, Func<object, object>>()
             {
-                {typeof(decimal), (type, value) => GetPreciseTypeValue<decimal>(value)},
-                {typeof(decimal?), (type, value) => GetPreciseTypeValue<decimal?>(value)},
-                {typeof(float), (type, value) => GetPreciseTypeValue<float>(value)},
-                {typeof(float?), (type, value) => GetPreciseTypeValue<float?>(value)},
-                {typeof(int), (type, value) => GetPreciseTypeValue<int>(value)},
-                {typeof(int?), (type, value) => GetPreciseTypeValue<int?>(value)},
-                {typeof(string), (type, value) => GetPreciseTypeValue<string>(value)},
-                {typeof(DateTime), (type, value) => GetPreciseTypeValue<DateTime>(value)},
-                {typeof(DateTime?), (type, value) => GetPreciseTypeValue<DateTime?>(value)}
+                {typeof(decimal), (value) => GetPreciseTypeValue<decimal>(value)},
+                {typeof(decimal?), (value) => GetPreciseTypeValue<decimal?>(value)},
+                {typeof(float), (value) => GetPreciseTypeValue<float>(value)},
+                {typeof(float?), (value) => GetPreciseTypeValue<float?>(value)},
+                {typeof(int), (value) => GetPreciseTypeValue<int>(value)},
+                {typeof(int?), (value) => GetPreciseTypeValue<int?>(value)},
+                {typeof(string), (value) => GetPreciseTypeValue<string>(value)},
+                {typeof(DateTime), (value) => GetPreciseTypeValue<DateTime>(value)},
+                {typeof(DateTime?), (value) => GetPreciseTypeValue<DateTime?>(value)}
             };
         }
     }
